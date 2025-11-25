@@ -821,7 +821,7 @@ resultadoss.forEach((item, index) => {
     console.log("----------------------------------------");
 });
 
-const orgaos = [...new Set(repassesJson.map(item => item.orgao).filter(Boolean))];
+const orgaos = [...new Set(repassesGoverno.map(item => item.orgao).filter(Boolean))];
 
 console.log("=== Usuario 4: c. MENU AUTOMÁTICO DE ÓRGÃOS ===");
 orgaos.forEach((o, i) => console.log(`${i + 1}. ${o}`));
@@ -837,7 +837,7 @@ let totalFalha = 0;
 let falhaPorMotivo = {};
 let sucessoPorOrgaos = {};
 
-const transacoesValidas = repassesJson.filter(item =>
+const transacoesValidas = repassesGoverno.filter(item =>
     item.status !== "falha" || (typeof item.motivo === "string" && item.motivo.trim() !== "")
 );
 
