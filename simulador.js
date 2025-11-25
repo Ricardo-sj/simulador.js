@@ -1,4 +1,4 @@
-const repassesJson = [
+const repassesGoverno = [
  {
     "orgao": "Polícia Civil",
     "data": "01/01/2024",
@@ -595,14 +595,14 @@ const repassesJson = [
 ]
 /*console.log("Primeiro repasse:", repassesJson[0])*/
 
-const totalRepasses = repassesJson.length
+const totalRepasses = repassesGoverno.length
 console.log("RELATORIO DE REPASSES")
-console.log("Total de repasses realizados:", totalRepasses)
+console.log("Total de repasses do Governo:", totalRepasses)
 
 function resultadoSucesso(lista) {
     return lista.filter(item => item.status === "sucesso").length;
 }
-console.log("Quantidade total de repasses bem sucedidos:", resultadoSucesso(repassesJson));
+console.log("Quantidade total de repasses bem sucedidos:", resultadoSucesso(repassesGoverno));
 
 function sucessoPorOrgao(lista) {
     return lista.reduce((acc, item) => {
@@ -613,7 +613,7 @@ function sucessoPorOrgao(lista) {
     }, {});
 }
 
-const resultado = sucessoPorOrgao(repassesJson)
+const resultado = sucessoPorOrgao(repassesGoverno)
 console.log("Quantidade total de repasses bem sucedidos por órgão:", resultado)
 
 function valorTotalRepassesSucesso(lista) {
@@ -621,7 +621,7 @@ function valorTotalRepassesSucesso(lista) {
         .filter(item => item.status === "sucesso") 
         .reduce((total, item) => total + item.valor, 0)
 }
-const totalValorSucesso = valorTotalRepassesSucesso(repassesJson);
+const totalValorSucesso = valorTotalRepassesSucesso(repassesGoverno);
 console.log("Valor total de repasses bem sucedidos: R$", totalValorSucesso.toFixed(2));
 
 function valorTotalSucessoPorOrgao(lista) {
@@ -633,13 +633,13 @@ function valorTotalSucessoPorOrgao(lista) {
     }, {});
 }
 
-const valoresPorOrgao = valorTotalSucessoPorOrgao(repassesJson);
+const valoresPorOrgao = valorTotalSucessoPorOrgao(repassesGoverno);
 console.log("Valor total de repasses bem sucedidos por órgão:", valoresPorOrgao);
 
 function resultadofalha(lista) {
     return lista.filter(item => item.status === "falha").length;
 }
-console.log("Quantidade total de repasses com falha:", resultadofalha(repassesJson));
+console.log("Quantidade total de repasses com falha:", resultadofalha(repassesGoverno));
 
 function resultadofalhaporOrgao(lista) {
     return lista
@@ -654,7 +654,7 @@ function resultadofalhaporOrgao(lista) {
             return accumulador;
         }, {});
 }
-console.log("Quantidade total de repasses com falha por orgao:", resultadofalhaporOrgao(repassesJson));
+console.log("Quantidade total de repasses com falha por orgao:", resultadofalhaporOrgao(repassesGoverno));
 
 function repassesFalhaPorMotivo(lista) {
     return lista
@@ -669,14 +669,14 @@ function repassesFalhaPorMotivo(lista) {
             return accumulador;
         }, {});
 }
-console.log("Quantidade total de repasses com falha por motivo:", repassesFalhaPorMotivo(repassesJson));
+console.log("Quantidade total de repasses com falha por motivo:", repassesFalhaPorMotivo(repassesGoverno));
 
 function Valortotalderepassescomfalha(lista) {
     return lista
         .filter(item => item.status === "falha") 
         .reduce((total, item) => total + item.valor, 0)
 }
-const totalValorFalha = Valortotalderepassescomfalha(repassesJson);
+const totalValorFalha = Valortotalderepassescomfalha(repassesGoverno);
 console.log("Valor total de repasses com falha: R$", totalValorFalha.toFixed(2));
 
 function Valortotalderepassescomfalhaporórgão(lista) {
@@ -688,7 +688,7 @@ function Valortotalderepassescomfalhaporórgão(lista) {
     }, {});
 }
 
-const valoresfalhaPorOrgao = Valortotalderepassescomfalhaporórgão(repassesJson);
+const valoresfalhaPorOrgao = Valortotalderepassescomfalhaporórgão(repassesGoverno);
 console.log("Valor total de repasses com falha por órgão:", valoresfalhaPorOrgao);
 
 function Valortotalderepassescomfalhapormotivo(lista) {
@@ -700,7 +700,7 @@ function Valortotalderepassescomfalhapormotivo(lista) {
     }, {});
 }
 
-const valoresfalhaPormotivo = Valortotalderepassescomfalhapormotivo(repassesJson);
+const valoresfalhaPormotivo = Valortotalderepassescomfalhapormotivo(repassesGoverno);
 console.log("Valor total de repasses com falha por motivo:", valoresfalhaPormotivo);
 
 function obterRepasseComMaiorValor(lista) {
@@ -709,7 +709,7 @@ function obterRepasseComMaiorValor(lista) {
     );
 }
 
-const repasseMaiorValor = obterRepasseComMaiorValor(repassesJson);
+const repasseMaiorValor = obterRepasseComMaiorValor(repassesGoverno);
 
 console.log("a. Detalhes do repasse com maior valor:");
 console.log(repasseMaiorValor);
@@ -720,18 +720,18 @@ function obterRepasseComMenorValor(lista) {
     );
 }
 
-const repasseMenorValor = obterRepasseComMenorValor(repassesJson);
+const repasseMenorValor = obterRepasseComMenorValor(repassesGoverno);
 
 console.log("b. Detalhes do repasse com menor valor:");
 console.log(repasseMenorValor);
 
 const Diacommaisrepasses = lista => Object.entries(lista.reduce((c, {data}) => (c[data]=(c[data]||0)+1, c), {})).sort((a,b)=>b[1]-a[1])[0][0];
 
-console.log("c. Dia com mais repasses:", Diacommaisrepasses(repassesJson));
+console.log("c. Dia com mais repasses:", Diacommaisrepasses(repassesGoverno));
 
 const Orgaocommaisrepasses = lista => Object.entries(lista.reduce((c, {orgao}) => (c[orgao]=(c[orgao]||0)+1, c), {})).sort((a,b)=>b[1]-a[1])[0][0];
 
-console.log("d. Órgão com mais repasses:", Orgaocommaisrepasses(repassesJson));
+console.log("d. Órgão com mais repasses:", Orgaocommaisrepasses(repassesGoverno));
 
 function orgaoComMaisRepasses(lista) {
     const contagem = {};
@@ -745,7 +745,7 @@ function orgaoComMaisRepasses(lista) {
     return Object.keys(contagem).reduce((a, b) => contagem[a] > contagem[b] ? a : b);
 }
 
-const resultadomais = orgaoComMaisRepasses(repassesJson);
+const resultadomais = orgaoComMaisRepasses(repassesGoverno);
 console.log("e. Órgão com mais repasses com sucesso:", resultadomais);
 
 function Repassesfalhas(lista) {
@@ -760,11 +760,11 @@ function Repassesfalhas(lista) {
     return Object.keys(contagem).reduce((a, b) => contagem[a] > contagem[b] ? a : b);
 }
 
-const resultados = Repassesfalhas(repassesJson);
+const resultados = Repassesfalhas(repassesGoverno);
 console.log("f. Órgão com mais repasses falhados:", resultados);
 
 const motivoMaisFrequente = Object.entries(
-  repassesJson
+  repassesGoverno
     .filter(item => item.status === "falha")
     .reduce((acc, item) => {
       const motivo = item.motivo || "Sem motivo informado";
@@ -777,7 +777,7 @@ console.log("g. Motivo de falha com mais repasses:", motivoMaisFrequente);
 
 const orgaoEscolhido = "Polícia Civil";
 
-const filtrados = repassesJson.filter(item => item.orgao === orgaoEscolhido);
+const filtrados = repassesGoverno.filter(item => item.orgao === orgaoEscolhido);
 
 console.log("Usuario 4: a. RELATÓRIO DO ÓRGÃO:", orgaoEscolhido);
 console.log("Total de repasses:", filtrados.length);
@@ -799,7 +799,7 @@ console.log("Motivos das falhas:", motivos);
 
 const orgaoEscolhidos = "Ibama";
 
-const resultadoss = repassesJson.filter(item => item.orgao === orgaoEscolhidos);
+const resultadoss = repassesGoverno.filter(item => item.orgao === orgaoEscolhidos);
 
 console.log("========================================");
 console.log("  Usuario 4: b. RELATÓRIO DE TRANSAÇÕES POR ÓRGÃO");
